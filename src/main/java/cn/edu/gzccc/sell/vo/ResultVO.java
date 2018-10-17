@@ -3,7 +3,7 @@ package cn.edu.gzccc.sell.vo;
 import lombok.Data;
 
 /**
- * http请求放回的最外层对象
+ * http请求放回的最外层对象(给前端的用的)
  */
 @Data
 public class ResultVO<T>{

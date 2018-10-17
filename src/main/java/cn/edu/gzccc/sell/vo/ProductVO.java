@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * 次外层：商品包含类目
+ * 次外层：商品包含类目(给resultVO用的)
  */
 @Data
 public class ProductVO {

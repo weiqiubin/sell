@@ -6,7 +6,7 @@ import lombok.Data;
 import java.math.BigDecimal;
 
 /**
- * 最里层：商品详情
+ * 最里层：商品详情(给ProductInfo用的)
  */
 @Data
 public class ProductInfoVO {
