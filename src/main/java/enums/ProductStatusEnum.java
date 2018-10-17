@@ -2,7 +2,6 @@ package enums;
 
 import lombok.Getter;
 
-import javax.persistence.criteria.CriteriaBuilder;
 
 @Getter
 public enum ProductStatusEnum {

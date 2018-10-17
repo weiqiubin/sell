@@ -1,6 +1,9 @@
 package cn.edu.gzccc.sell.dataobject;
 
 
+import cn.edu.gzccc.sell.utils.EnumUtil;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import enums.ProductStatusEnum;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -36,7 +39,7 @@ public class ProductInfo {
     private String productIcon;
 
     /** 状态, 0正常1下架. */
-    private Integer productStatus;
+    private Integer productStatus = ProductStatusEnum.UP.getCode();
 
     /** 类目编号. */
     private Integer categoryType;
@@ -44,5 +47,10 @@ public class ProductInfo {
     private Date createTime;
 
     private Date updateTime;
+
+/*    @JsonIgnore
+    public ProductStatusEnum getProductStatusEnum() {
+        return EnumUtil.getByCode(productStatus, ProductStatusEnum.class);
+    }*/
 
 }
