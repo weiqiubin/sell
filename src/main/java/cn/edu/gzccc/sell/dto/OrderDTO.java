@@ -1,11 +1,12 @@
-package dto;
+package cn.edu.gzccc.sell.dto;
 
 import cn.edu.gzccc.sell.dataobject.OrderDetail;
-import enums.OrderStatusEnum;
-import enums.PayStatusEnum;
+import cn.edu.gzccc.sell.utils.serializer.Date2LongSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import cn.edu.gzccc.sell.enums.OrderStatusEnum;
+import cn.edu.gzccc.sell.enums.PayStatusEnum;
 import lombok.Data;
 
-import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.List;
  * 媒介，前端—>OrderDTO—>orderService
  */
 @Data
+//@JsonInclude(JsonInclude.Include.NON_NULL)
 public class OrderDTO {
     /**订单id. */
     private String orderId;
@@ -40,9 +42,11 @@ public class OrderDTO {
     private Integer payStatus = PayStatusEnum.WAIT.getCode();
 
     /** 创建时间. */
+    @JsonSerialize(using = Date2LongSerializer.class)
     private Date createTime;
 
     /** 更新时间. */
+    @JsonSerialize(using = Date2LongSerializer.class)
     private Date updateTime;
 
     List<OrderDetail> orderDetailList;

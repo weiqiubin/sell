@@ -1,7 +1,7 @@
 package cn.edu.gzccc.sell.service.impl;
 
 import cn.edu.gzccc.sell.dataobject.ProductInfo;
-import enums.ProductStatusEnum;
+import cn.edu.gzccc.sell.enums.ProductStatusEnum;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,11 +11,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.awt.print.Pageable;
 import java.math.BigDecimal;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

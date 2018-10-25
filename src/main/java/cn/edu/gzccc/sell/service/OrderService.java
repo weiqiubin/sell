@@ -1,7 +1,6 @@
 package cn.edu.gzccc.sell.service;
 
-import cn.edu.gzccc.sell.dataobject.OrderMaster;
-import dto.OrderDTO;
+import cn.edu.gzccc.sell.dto.OrderDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

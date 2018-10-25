@@ -1,7 +1,7 @@
 package cn.edu.gzccc.sell.dataobject;
 
-import enums.OrderStatusEnum;
-import enums.PayStatusEnum;
+import cn.edu.gzccc.sell.enums.OrderStatusEnum;
+import cn.edu.gzccc.sell.enums.PayStatusEnum;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 

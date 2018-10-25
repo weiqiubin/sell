@@ -1,6 +1,6 @@
 package cn.edu.gzccc.sell.utils;
 
-import enums.CodeEnum;
+import cn.edu.gzccc.sell.enums.CodeEnum;
 
 public class EnumUtil {
     public static <T extends CodeEnum> T getByCode(Integer code, Class<T> enumClass) {

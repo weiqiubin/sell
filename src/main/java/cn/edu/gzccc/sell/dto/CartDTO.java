@@ -1,4 +1,4 @@
-package dto;
+package cn.edu.gzccc.sell.dto;
 
 import lombok.Data;
 

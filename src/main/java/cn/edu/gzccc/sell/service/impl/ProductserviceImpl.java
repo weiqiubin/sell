@@ -4,9 +4,9 @@ import cn.edu.gzccc.sell.dataobject.ProductInfo;
 import cn.edu.gzccc.sell.exception.SellException;
 import cn.edu.gzccc.sell.repository.ProductinfoRepository;
 import cn.edu.gzccc.sell.service.ProductService;
-import dto.CartDTO;
-import enums.ProductStatusEnum;
-import enums.ResultEnum;
+import cn.edu.gzccc.sell.dto.CartDTO;
+import cn.edu.gzccc.sell.enums.ProductStatusEnum;
+import cn.edu.gzccc.sell.enums.ResultEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -42,7 +42,17 @@ public class ProductserviceImpl implements ProductService{
     }
 
     @Override
+    @Transactional
     public void increaseStock(List<CartDTO> cartDTOList) {
+        for (CartDTO cartDTO : cartDTOList ){
+            ProductInfo productInfo = productinfoRepository.findOne(cartDTO.getProductId());
+            if (productInfo == null){
+                throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+            }
+            Integer result = productInfo.getProductStock() + cartDTO.getProductQuantity();
+            productInfo.setProductStock(result);
+            productinfoRepository.save(productInfo);
+        }
 
     }
 

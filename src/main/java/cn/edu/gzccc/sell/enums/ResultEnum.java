@@ -1,4 +1,4 @@
-package enums;
+package cn.edu.gzccc.sell.enums;
 
 import lombok.Getter;
 

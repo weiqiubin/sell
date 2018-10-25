@@ -1,9 +1,7 @@
 package cn.edu.gzccc.sell.dataobject;
 
 
-import cn.edu.gzccc.sell.utils.EnumUtil;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import enums.ProductStatusEnum;
+import cn.edu.gzccc.sell.enums.ProductStatusEnum;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 
