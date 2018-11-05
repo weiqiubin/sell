@@ -3,7 +3,7 @@ package cn.edu.gzccc.sell.enums;
 import lombok.Getter;
 
 @Getter
-public enum ResultEnum {
+public enum ResultEnum implements CodeEnum{
 
     SUCCESS(0, "成功"),
 
@@ -42,6 +42,7 @@ public enum ResultEnum {
     LOGIN_FAIL(25, "登录失败, 登录信息不正确"),
 
     LOGOUT_SUCCESS(26, "登出成功"),
+    LOGIN_USERNAME_PASSWORD(27,"用户或密码不正确"),
     ;
 
     private Integer code;

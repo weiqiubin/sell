@@ -2,6 +2,8 @@ package cn.edu.gzccc.sell.dataobject;
 
 
 import cn.edu.gzccc.sell.enums.ProductStatusEnum;
+import cn.edu.gzccc.sell.utils.EnumUtil;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -46,9 +48,9 @@ public class ProductInfo {
 
     private Date updateTime;
 
-/*    @JsonIgnore
+    @JsonIgnore
     public ProductStatusEnum getProductStatusEnum() {
         return EnumUtil.getByCode(productStatus, ProductStatusEnum.class);
-    }*/
+    }
 
 }

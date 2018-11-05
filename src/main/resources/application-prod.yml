@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: wei19970707
+    url: jdbc:mysql://119.29.20.227/sell?characterEncoding=utf-8&useSSL=false
+  jackson:
+    default-property-inclusion: non_null
+  redis:
+    host: 119.29.20.227
+    port: 6379
+    password: wei19970707
+server:
+  context-path: /sell
+  port: 8080
+wechat:
+   mpAppId: wxa44dc0ce28b5d078
+   mpAppSecret: 4ddeda9b9cda16e70cf47f6660200f36
+   templateId:
+       orderStatus: UOiPVgZS7R066OQsquCy_x8tWNRGtzwbGM9Jiy-_6Ow
+
+projectUrl:
+  wechatMpAuthorize: http://www.weiqiubin.cn
+  wechatOpenAuthorize: http://www.weiqiubin.cn
+  sell: http://www.weiqiubin.cn

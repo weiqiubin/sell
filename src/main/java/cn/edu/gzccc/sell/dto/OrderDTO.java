@@ -1,7 +1,9 @@
 package cn.edu.gzccc.sell.dto;
 
 import cn.edu.gzccc.sell.dataobject.OrderDetail;
+import cn.edu.gzccc.sell.utils.EnumUtil;
 import cn.edu.gzccc.sell.utils.serializer.Date2LongSerializer;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import cn.edu.gzccc.sell.enums.OrderStatusEnum;
 import cn.edu.gzccc.sell.enums.PayStatusEnum;
@@ -16,7 +18,8 @@ import java.util.List;
  */
 @Data
 //@JsonInclude(JsonInclude.Include.NON_NULL)
-public class OrderDTO {
+public class
+OrderDTO {
     /**订单id. */
     private String orderId;
 
@@ -49,5 +52,16 @@ public class OrderDTO {
     @JsonSerialize(using = Date2LongSerializer.class)
     private Date updateTime;
 
+
     List<OrderDetail> orderDetailList;
+
+    @JsonIgnore
+    public OrderStatusEnum getOrderStatusEnum(){
+        return EnumUtil.getByCode(orderStatus,OrderStatusEnum.class);
+    }
+
+    @JsonIgnore
+    public PayStatusEnum getPayStatusEnum(){
+        return  EnumUtil.getByCode(payStatus,PayStatusEnum.class);
+    }
 }

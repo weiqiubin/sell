@@ -26,18 +26,14 @@ public class PayController {
     private PayService payService;
 
     @GetMapping("/create")
-    public ModelAndView create(@RequestParam("orderId") String orderId,
+    public String create(@RequestParam("orderId") String orderId,
                                @RequestParam("returnUrl") String returnUrl,
                                Map<String, Object> map) {
         //1. 查询订单
         OrderDTO orderDTO = orderService.findOne(orderId);
-        System.out.println(orderDTO.getBuyerOpenid());
-
-
         if (orderDTO.getBuyerOpenid() == null) {
             throw new SellException(ResultEnum.ORDER_NOT_EXIST);
         }
-
 /*       //2. 发起支付
         PayResponse payResponse = payService.create(orderDTO);
 
@@ -45,7 +41,8 @@ public class PayController {
         map.put("returnUrl", returnUrl);
 
 
-        return new ModelAndView("pay/create", map);
+        return "redirect:" + returnUrl;
+        //return new ModelAndView("pay/create", map);
     }
 
     /**

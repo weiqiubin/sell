@@ -24,8 +24,11 @@ public class ProductCategory {
     /** 类目编号. */
     private Integer categoryType;
 
-    public ProductCategory(){
+    private Date createTime;
 
+    private Date updateTime;
+
+    public ProductCategory() {
     }
 
     public ProductCategory(String categoryName, Integer categoryType) {

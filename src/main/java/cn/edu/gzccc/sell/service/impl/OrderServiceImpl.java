@@ -9,6 +9,8 @@ import cn.edu.gzccc.sell.repository.OrderDetailRepository;
 import cn.edu.gzccc.sell.repository.OrderMasterRepository;
 import cn.edu.gzccc.sell.service.OrderService;
 import cn.edu.gzccc.sell.service.ProductService;
+import cn.edu.gzccc.sell.service.PushMessageService;
+import cn.edu.gzccc.sell.service.WebSocket;
 import cn.edu.gzccc.sell.utils.KeyUtil;
 import cn.edu.gzccc.sell.dto.CartDTO;
 import cn.edu.gzccc.sell.dto.OrderDTO;
@@ -43,6 +45,13 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private OrderMasterRepository orderMasterRepository;
+
+    @Autowired
+    private PushMessageService pushMessageService;
+
+    @Autowired
+    private WebSocket webSocket;
+
 
     @Override
     @Transactional
@@ -83,6 +92,13 @@ public class OrderServiceImpl implements OrderService {
         orderMasterRepository.save(orderMaster);
         //4、扣库存
         productService.decreaseStock(cartDTOList);
+
+        OrderDTO orderDTO1 = OrderMaster2OrderDTOConverter.convert(orderMaster);
+        //推送微信模板消息
+         pushMessageService.orderStatus(orderDTO1);
+
+        //发送websocket消息
+        webSocket.sendMessage("有新的订单");
 
         return orderDTO;
     }
@@ -173,6 +189,9 @@ public class OrderServiceImpl implements OrderService {
             throw new SellException(ResultEnum.ORDER_UPDATE_FAIL);
         }
 
+        //推送微信模板消息
+        pushMessageService.orderStatus(orderDTO);
+
         return orderDTO;
     }
 
@@ -202,5 +221,13 @@ public class OrderServiceImpl implements OrderService {
         }
 
         return orderDTO;
+    }
+
+    @Override
+    public Page<OrderDTO> findList(Pageable pageable) {
+        Page<OrderMaster> orderMasterPage  = orderMasterRepository.findAll(pageable);
+        List<OrderDTO> orderDTOList = OrderMaster2OrderDTOConverter.convert(orderMasterPage.getContent());
+
+        return new PageImpl<OrderDTO>(orderDTOList, pageable, orderMasterPage.getTotalElements());
     }
 }

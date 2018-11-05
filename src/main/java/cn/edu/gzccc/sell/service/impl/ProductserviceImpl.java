@@ -1,6 +1,7 @@
 package cn.edu.gzccc.sell.service.impl;
 
 import cn.edu.gzccc.sell.dataobject.ProductInfo;
+import cn.edu.gzccc.sell.enums.PayStatusEnum;
 import cn.edu.gzccc.sell.exception.SellException;
 import cn.edu.gzccc.sell.repository.ProductinfoRepository;
 import cn.edu.gzccc.sell.service.ProductService;
@@ -75,5 +76,33 @@ public class ProductserviceImpl implements ProductService{
             productinfoRepository.save(productInfo);
 
         }
+    }
+
+    @Override
+    public ProductInfo onSale(String productId) {
+        ProductInfo productInfo = productinfoRepository.findOne(productId);
+        if (productId == null) {
+            throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+        }
+        if (productInfo.getProductStatusEnum() == ProductStatusEnum.UP){
+
+            throw new SellException(ResultEnum.PRODUCT_STATUS_ERROR);
+        }
+        productInfo.setProductStatus(ProductStatusEnum.UP.getCode());
+        return productinfoRepository.save(productInfo);
+    }
+
+    @Override
+    public ProductInfo offSale(String productId) {
+        ProductInfo productInfo = productinfoRepository.findOne(productId);
+        if (productId == null) {
+            throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+        }
+        if (productInfo.getProductStatusEnum() == ProductStatusEnum.DOWN){
+
+            throw new SellException(ResultEnum.PRODUCT_STATUS_ERROR);
+        }
+        productInfo.setProductStatus(ProductStatusEnum.DOWN.getCode());
+        return productinfoRepository.save(productInfo);
     }
 }
